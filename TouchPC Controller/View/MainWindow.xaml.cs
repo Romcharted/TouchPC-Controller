@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Threading;
 using TouchPC_Controller.Logic.Server;
 
 namespace TouchPC_Controller {
@@ -30,8 +31,7 @@ namespace TouchPC_Controller {
             serverManager = new ServerManager();
             serverManager.LaunchServer();
             ReceiveData();
-            string ipAddressString = serverManager.GetLocalWifiIpAddress().ToString() ?? "No IP address found";
-            ipText.Text = $"IP Adress : {ipAddressString}";
+            UpdateIPAddress();
 
             // Initialisation de l'icône de notification
             notifyIcon = new NotifyIcon();
@@ -52,18 +52,31 @@ namespace TouchPC_Controller {
             // Événement pour cacher l'application dans la zone de notification lorsque la fenêtre est minimisée
             this.StateChanged += Window_StateChanged;
             this.Closed += Window_Closed;
+
+            // Met à jour l'IP toutes les 10 minutes
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMinutes(10);
+            timer.Tick += (sender, e) => UpdateIPAddress();
+            timer.Start();
+        }
+
+        private void UpdateIPAddress() {
+            string ipAddressString = serverManager.GetLocalWifiIpAddress().ToString() ?? "No IP address found";
+            ipText.Text = $"IP Address: {ipAddressString}";
         }
 
         private void NotifyIcon_MouseDoubleClick(object sender, System.Windows.Forms.MouseEventArgs e) {
             // Restaure l'application lorsque l'icône est double-cliquée
             this.Show();
             this.WindowState = WindowState.Normal;
+            UpdateIPAddress();
         }
 
         private void OpenApplication_Click(object sender, EventArgs e) {
             // Ouvrir l'application depuis le menu contextuel
             this.Show();
             this.WindowState = WindowState.Normal;
+            UpdateIPAddress();
         }
 
         private void QuitApplication_Click(object sender, EventArgs e) {
