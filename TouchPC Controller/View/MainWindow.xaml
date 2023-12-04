@@ -12,6 +12,7 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -21,7 +22,19 @@
 
         <Image Source="/TouchPC Controller;component/Ressources/logo-no-background.png" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="660"/>
 
-        <Label x:Name="labelPort" Content="Port :" FontFamily="Tahoma" FontSize="20" Foreground="#f3f6f4" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0" Margin="0,0,15,0" Width="70"/>
+
+        <TextBlock x:Name="ipText"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Center"
+             Foreground="#f3f6f4"
+             Width="300"
+             TextAlignment="Center"
+             Height="25"
+             FontFamily="Tahoma" FontSize="16"
+             Grid.ColumnSpan="2"
+             Grid.Row="1" Grid.Column="0" Text="IP Adress : 255.255.255.255"/>
+        
+        <Label x:Name="labelPort" Content="Port :" FontFamily="Tahoma" FontSize="20" Foreground="#f3f6f4" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="0" Margin="0,0,15,0" Width="70"/>
 
         <TextBox x:Name="txtPort"
                  HorizontalAlignment="Left"
@@ -30,11 +43,11 @@
                  Width="80"
                  Height="25"
                  FontFamily="Tahoma" FontSize="16"
-                 PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="1" Grid.Column="1"/>
+                 PreviewTextInput="TextBox_PreviewTextInput" Grid.Row="2" Grid.Column="1"/>
 
 
         <Button Content="Apply" VerticalAlignment="Top" FontFamily="Tahoma" FontSize="16" HorizontalAlignment="Center" Width="160" Height="30" Click="ApplyPort_Click"
-        Grid.Row="2" Grid.ColumnSpan="2">
+        Grid.Row="3" Grid.ColumnSpan="2">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Background" Value="#76766E"/>
@@ -55,8 +68,5 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-
-
-
     </Grid>
 </Window>

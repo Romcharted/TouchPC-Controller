@@ -30,6 +30,8 @@ namespace TouchPC_Controller {
             serverManager = new ServerManager();
             serverManager.LaunchServer();
             ReceiveData();
+            string ipAddressString = serverManager.GetLocalWifiIpAddress().ToString() ?? "No IP address found";
+            ipText.Text = $"IP Adress : {ipAddressString}";
 
             // Initialisation de l'icône de notification
             notifyIcon = new NotifyIcon();

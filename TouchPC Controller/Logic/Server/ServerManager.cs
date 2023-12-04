@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 
@@ -66,6 +68,25 @@ namespace TouchPC_Controller.Logic.Server {
         /// </summary>
         public void StopServer() {
             udpServer.Close();
+        }
+
+        /// <summary>
+        /// Permet de recuperer dans la premiere interface reseau de type Wifi et active, la derniere adresse IPv4 de l'interface
+        /// </summary>
+        /// <returns>L'adresse Ip si trouvé sinon null</returns>
+        public IPAddress GetLocalWifiIpAddress() {
+            // .FirstOrDefault(...) permet de retourner le premier element qui correspond à la condition
+
+            // NetworkInterfaceType.Wireless80211 == interface réseau de type Wi-Fi et qui fonctionne (OperationalStatus.Up)
+            var wifiInterface = NetworkInterface.GetAllNetworkInterfaces()
+                .FirstOrDefault(i => i.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 && i.OperationalStatus == OperationalStatus.Up);
+
+            // Récupère la dernière adresse IP IPv4 de l'interface Wi-Fi
+            var wifiIPAddress = wifiInterface?.GetIPProperties().UnicastAddresses
+                .LastOrDefault(ip => ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
+
+            // Retourne l'adresse IP de l'interface Wi-Fi ou null si aucune adresse IP n'est trouvée
+            return wifiIPAddress?.Address;
         }
     }
 }
