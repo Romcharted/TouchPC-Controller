@@ -25,12 +25,12 @@ namespace TouchPC_Controller.Logic.Server {
         }
 
         /// <summary>
-        /// Déplace la souris aux coordonnées spécifiées.
+        /// Déplace la souris par rapport à la distance reçu
         /// </summary>
         /// <param name="x">Coordonnée X</param>
         /// <param name="y">Coordonnée Y</param>
-        public void MouseMove(int x, int y) {
-            SetCursorPos(x, y);
+        public void MouseMove(int distanceX, int distanceY) {
+            inputSimulator.Mouse.MoveMouseBy(distanceX, distanceY);
         }
 
         /// <summary>

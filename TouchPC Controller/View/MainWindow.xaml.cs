@@ -40,8 +40,8 @@ namespace TouchPC_Controller {
 
             // Créer le menu contextuel
             contextMenu = new ContextMenuStrip();
-            contextMenu.Items.Add("Ouvrir l'application", null, OpenApplication_Click);
-            contextMenu.Items.Add("Quitter l'application", null, QuitApplication_Click);
+            contextMenu.Items.Add("Open app", null, OpenApplication_Click);
+            contextMenu.Items.Add("Quit app", null, QuitApplication_Click);
 
             // Associer le menu contextuel à l'icône
             notifyIcon.ContextMenuStrip = contextMenu;
