@@ -12,7 +12,7 @@ Retrouvez [ici le répertoire pour l'application Mobile](https://github.com/roma
 
 ## Fonctionnalités principales
 
-- **Souris Virtuelle :** Contrôlez le curseur de votre souris en glissant simplement sur l'écran de votre appareil mobile.
+- **Souris Virtuelle :** Contrôlez le curseur de votre souris en glissant simplement sur l'écran de votre appareil mobile. Vous pouvez effectuer un double clic gauche en appuyant deux fois rapidement au même endroit. Vous pouvez aussi faire défiler en utilisant deux doigts, puis glisser vers le haut ou vers le bas.
 
 - **Clavier Virtuel :** Saisissez du texte et contrôlez votre ordinateur à distance avec le clavier virtuel intégré. Attention, si vous utilisez le clavier Microsoft Swift, pour la touche de suppression, il faut rester appuyé pour que cela marche.
 
